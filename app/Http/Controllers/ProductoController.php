@@ -27,15 +27,22 @@ class ProductoController extends Controller
      *
      * 
      */
-    public function getAlmacenFisico()
+    public function getAlmacen($id)
     {
+
+        if ($id == 1) {
+            $value = 'FISICO';
+        } else {
+            $value = 'VIRTUAL';
+        }
+
         $existencias = Existencias::join('cat_almacenes', 'existencias.id_almacen', 'cat_almacenes.id_almacen')
                                 ->join('cat_productos', 'existencias.id_producto', 'cat_productos.id_producto')
                                 ->select('existencias.id_producto', 'existencias.id_almacen', DB::raw('SUM(existencias) as total'),
                                             'cat_almacenes.nombre_almacen', 'cat_productos.sku')
-                                ->where('cat_almacenes.tipo', 'FISICO')
+                                ->where('cat_almacenes.tipo', $value)
                                 ->groupBy('existencias.id_producto')
-                                ->get();
+                                ->paginate(5);
 
                 // SELECT id_producto, ANY_VALUE(existencias.id_almacen) AS id_almacen, SUM(existencias.existencias) AS total,
                 // ANY_VALUE(cat_almacenes.nombre_almacen)
@@ -47,62 +54,7 @@ class ProductoController extends Controller
                 // WHERE cat_almacenes.tipo = 'FISICO'
                 // GROUP BY existencias.id_producto
         
-        return view('almacenes.fisico')->with('existencias', $existencias);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('almacenes.existencias')->with('existencias', $existencias)
+                                        ->with('title', $value);
     }
 }

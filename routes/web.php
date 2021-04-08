@@ -17,4 +17,4 @@ Route::get('/', function () {
 
 
 Route::get('home', 'ProductoController@index')->name('home');
-Route::get('fisico', 'ProductoController@getAlmacenFisico')->name('almacen.fisico');
+Route::get('almacen/{id}', 'ProductoController@getAlmacen')->name('almacen');

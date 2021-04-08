@@ -82,7 +82,7 @@
                         <div class="table-wrapper">
                             <div class="table-title">
                                 <div align="center">
-                                    <h3> LISTADO DE EXISTENCIAS DE PRODUCTOS EN ALMACENES DE TIPO FÍSICO </h3>
+                                    <h3> LISTADO DE EXISTENCIAS DE PRODUCTOS EN ALMACENES DE TIPO {{ $title }} </h3>
                                 </div><br>
                             </div><br>
                             <div class="row col-sm-12">
@@ -114,6 +114,10 @@
                                     @endif
                                 </tbody>
                             </table>
+                            <div class="clearfix">
+                                Mostrando {{ $existencias->count() }} registros.
+                                {{ $existencias->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

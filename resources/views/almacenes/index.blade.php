@@ -87,10 +87,10 @@
                             </div><br>
                             <div class="row col-sm-12">
                                 <div class="col-sm-4" align="right">
-                                    <a class="btn" style="background-color: #044B59; color: white;" href="{{ route('almacen.fisico') }}"><i class="fas fa-eye"></i> Almacén Físico</a>
+                                    <a class="btn" style="background-color: #044B59; color: white;" href="{{ route('almacen',['id'=>1]) }}"><i class="fas fa-eye"></i> Almacén Físico</a>
                                 </div>
                                 <div class="col-sm-4" align="right">
-                                    <a class="btn" style="background-color: #044B59; color: white;"><i class="fas fa-box"></i> Almacén Virtual</a>
+                                    <a class="btn" style="background-color: #044B59; color: white;" href="{{ route('almacen',['id'=>2]) }}"><i class="fas fa-box"></i> Almacén Virtual</a>
                                 </div>
                                 <div class="col-sm-4" align="right">
                                     <a class="btn" style="background-color: #044B59; color: white;"><i class="fas fa-plus"></i> Agregar/modificar</a>
