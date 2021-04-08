@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/font-awesome/css/all.min.css') }}">
         <style>
             html, body {
                 background-color: #fff;
@@ -62,16 +63,20 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            table.table td a.settings {
+                color: #044B59;
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
 
 
             <div class="content">
-                <div class="title m-b-md">
-                    ALMACENES DEL PACÍFICO
-                </div>
-
+                <div>
+                    <h1>ALMACENES DEL PACÍFICO</h1>
+                </div><br>
                 <div class="container-xl">
                     <div class="table-responsive">
                         <div class="table-wrapper">
@@ -79,6 +84,17 @@
                                 <div align="center">
                                     <h3> LISTADO DE PRODUCTOS </h3>
                                 </div><br>
+                            </div><br>
+                            <div class="row col-sm-12">
+                                <div class="col-sm-4" align="right">
+                                    <a class="btn" style="background-color: #044B59; color: white;" href="{{ route('almacen.fisico') }}"><i class="fas fa-eye"></i> Almacén Físico</a>
+                                </div>
+                                <div class="col-sm-4" align="right">
+                                    <a class="btn" style="background-color: #044B59; color: white;"><i class="fas fa-box"></i> Almacén Virtual</a>
+                                </div>
+                                <div class="col-sm-4" align="right">
+                                    <a class="btn" style="background-color: #044B59; color: white;"><i class="fas fa-plus"></i> Agregar/modificar</a>
+                                </div>
                             </div><br>
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -103,11 +119,6 @@
                                                 <td> {{ $producto->marca }}</td>
                                                 <td> {{ $producto->color }}</td>
                                                 <td> {{ $producto->precio }}</td>
-                                                {{-- <td>
-                                                    <a class="settings" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('routes.edit', ['route'=>$route->id]) }}"><i class="fas fa-edit"></i></a>
-                                                    <a class="settings" data-toggle="tooltip" data-placement="top" title="Asignar cobrador" href="{{ route('routes.assign', ['id'=>$route->id]) }}"><i class="fas fa-wallet"></i></a>
-                                                    <a class="settings delete" data-toggle="tooltip" data-placement="top" title="Eliminar" data-route-id={{$route->id}} data-route-zone={{$route->zona}}><i class="fas fa-trash"></i></a>
-                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     @endif

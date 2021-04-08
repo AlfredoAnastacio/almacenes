@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Productos;
+use App\Existencias;
+use DB;
 
 class ProductoController extends Controller
 {
@@ -16,18 +18,36 @@ class ProductoController extends Controller
     {
 
         $productos = Productos::paginate(5);
-        // dd($productos);
+        
         return view('almacenes.index')->with('productos', $productos);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 
      *
-     * @return \Illuminate\Http\Response
+     * 
      */
-    public function create()
+    public function getAlmacenFisico()
     {
-        //
+        $existencias = Existencias::join('cat_almacenes', 'existencias.id_almacen', 'cat_almacenes.id_almacen')
+                                ->join('cat_productos', 'existencias.id_producto', 'cat_productos.id_producto')
+                                ->select('existencias.id_producto', 'existencias.id_almacen', DB::raw('SUM(existencias) as total'),
+                                            'cat_almacenes.nombre_almacen', 'cat_productos.sku')
+                                ->where('cat_almacenes.tipo', 'FISICO')
+                                ->groupBy('existencias.id_producto')
+                                ->get();
+
+                // SELECT id_producto, ANY_VALUE(existencias.id_almacen) AS id_almacen, SUM(existencias.existencias) AS total,
+                // ANY_VALUE(cat_almacenes.nombre_almacen)
+                // FROM existencias
+                // INNER JOIN cat_almacenes
+                // ON existencias.id_almacen = cat_almacenes.id_almacen
+                // INNER JOIN cat_productos
+                // ON existencias.id_producto = cat_productos.id_producto
+                // WHERE cat_almacenes.tipo = 'FISICO'
+                // GROUP BY existencias.id_producto
+        
+        return view('almacenes.fisico')->with('existencias', $existencias);
     }
 
     /**
