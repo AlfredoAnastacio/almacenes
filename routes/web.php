@@ -18,3 +18,6 @@ Route::get('/', function () {
 
 Route::get('home', 'ProductoController@index')->name('home');
 Route::get('almacen/{id}', 'ProductoController@getAlmacen')->name('almacen');
+Route::get('add', 'ProductoController@addExistencias')->name('almacen.update');
+Route::post('store', 'ProductoController@store')->name('almacen.store');
+Route::get('get-data-almacenes/{id}', 'ProductoController@getAlmacenes')->name('almacen.byProducto');

@@ -12,112 +12,53 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('plugins/font-awesome/css/all.min.css') }}">
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
-            table.table td a.settings {
-                color: #044B59;
-                cursor: pointer;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/all.css') }}">
     </head>
     <body>
-
-
-            <div class="content">
-                <div>
-                    <h1>ALMACENES DEL PACÍFICO</h1>
-                </div><br>
-                <div class="container-xl">
-                    <div class="table-responsive">
-                        <div class="table-wrapper">
-                            <div class="table-title">
-                                <div align="center">
-                                    <h3> LISTADO DE EXISTENCIAS DE PRODUCTOS EN ALMACENES DE TIPO {{ $title }} </h3>
-                                </div><br>
+        <div class="content">
+            <div>
+                <h1>ALMACENES DEL PACÍFICO</h1>
+            </div><br>
+            <div class="container-xl">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <div class="table-title">
+                            <div align="center">
+                                <h3> LISTADO DE EXISTENCIAS DE PRODUCTOS EN ALMACENES DE TIPO {{ $title }} </h3>
                             </div><br>
-                            <div class="row col-sm-12">
-                                <div class="col-sm-12" align="right">
-                                    <a class="btn btn-sm" style="background-color: #044B59; color: white;" href="{{ route('home') }}"><i class="fas fa-eye"></i> Regresar</a>
-                                </div>
-                            </div><br>
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr align="center">
-                                        <th> Producto </th>
-                                        <th> Almacen </th>
-                                        <th> Total </th>
-                                    </tr>
-                                </thead>
-                                <tbody align="center" id="routesTable">
-                                    @if (count($existencias) === 0)
-                                        <tr>
-                                            <td colspan="6" align="center">Sin información para mostrar</td>
-                                        </tr>
-                                    @else
-                                        @foreach($existencias as $existencia)
-                                            <tr>
-                                                <td> {{ $existencia->sku }}</td>
-                                                <td> {{ $existencia->nombre_almacen }}</td>
-                                                <td> {{ $existencia->total }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                            <div class="clearfix">
-                                Mostrando {{ $existencias->count() }} registros.
-                                {{ $existencias->links() }}
+                        </div><br>
+                        <div class="row col-sm-12">
+                            <div class="col-sm-12" align="right">
+                                <a class="btn btn-sm" style="background-color: #044B59; color: white;" href="{{ route('home') }}"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
                             </div>
+                        </div><br>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th> Producto </th>
+                                    <th> Almacen </th>
+                                    <th> Total </th>
+                                </tr>
+                            </thead>
+                            <tbody align="center" id="routesTable">
+                                @if (count($existencias) === 0)
+                                    <tr>
+                                        <td colspan="6" align="center">Sin información para mostrar</td>
+                                    </tr>
+                                @else
+                                    @foreach($existencias as $existencia)
+                                        <tr>
+                                            <td> {{ $existencia->sku }}</td>
+                                            <td> {{ $existencia->nombre_almacen }}</td>
+                                            <td> {{ $existencia->total }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
+                        <div class="clearfix">
+                            Mostrando {{ $existencias->count() }} registros.
+                            {{ $existencias->links() }}
                         </div>
                     </div>
                 </div>

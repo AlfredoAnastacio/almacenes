@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Almacenes extends Model
 {
+
+    public $table = 'cat_almacenes';
     /**
      * The attributes that are mass assignable.
      *
